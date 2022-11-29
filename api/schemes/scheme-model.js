@@ -177,8 +177,19 @@ async function add(scheme) { // EXERCISE D
   */
 }
 
-function addStep(scheme_id, step) { // EXERCISE E
+async function addStep(id, step) { // EXERCISE E
+
+  await db('steps')
+    .insert({step_number: step.step_number, instructions: step.instructions, scheme_id: id})
+
+  return findSteps(id)
+  
+ 
   /*
+    SQL query:
+      insert into steps (step_number, instructions,scheme_id) 
+        values (4, 'become a dictator', 1);
+
     1E- This function adds a step to the scheme with the given `scheme_id`
     and resolves to _all the steps_ belonging to the given `scheme_id`,
     including the newly created one.
