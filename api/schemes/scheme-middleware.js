@@ -26,8 +26,8 @@ const validateScheme = (req, res, next) => {
   const {scheme_name} = req.body;
   if(
     !scheme_name 
-    || scheme_name === '' 
     || typeof scheme_name !== 'string'
+    || scheme_name.trim() === '' 
   ) {
     next({status: 400, message: 'invalid scheme_name'});
   } else {
@@ -48,8 +48,8 @@ const validateStep = (req, res, next) => {
   const {instructions, step_number} = req.body;
   if(
     !instructions
-    || instructions === ''
     || typeof instructions !== 'string'
+    || instructions.trim() === ''
     || typeof step_number !== 'number'
     || step_number < 1
   ) {

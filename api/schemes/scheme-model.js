@@ -29,7 +29,7 @@ async function find() { // EXERCISE A
 async function findById(scheme_id) { // EXERCISE B
 
   const rows = await db('schemes as sc')
-    .select('sc.scheme_name', 'st.*')
+    .select('sc.scheme_name', 'st.*', 'sc.scheme_id')
     .leftJoin('steps as st', 'sc.scheme_id', '=', 'st.scheme_id')
     .where('sc.scheme_id', scheme_id)
     .orderBy('st.step_number')
@@ -184,7 +184,6 @@ async function addStep(id, step) { // EXERCISE E
 
   return findSteps(id)
   
- 
   /*
     SQL query:
       insert into steps (step_number, instructions,scheme_id) 
